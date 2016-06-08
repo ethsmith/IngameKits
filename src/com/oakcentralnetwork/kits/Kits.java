@@ -87,9 +87,12 @@ public class Kits extends JavaPlugin {
 							if(args[0].equalsIgnoreCase("create")) {
 								if(sender.hasPermission("kits.create")) {
 									FileConfiguration config = getConfig();
-									config.set("Kits." + args[1] + ".Items", args[2]);
 									String kitNames = config.getString("Names");
-									config.set("Names", kitNames + "," + args[1]);
+									String kitName = args[1];
+									
+									config.set("Kits." + kitName + ".Items", args[2]);
+									config.set("Names", kitNames + "," + kitName);
+									
 									saveConfig();
 								} else {
 									sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
