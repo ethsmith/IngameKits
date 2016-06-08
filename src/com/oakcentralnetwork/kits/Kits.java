@@ -41,7 +41,7 @@ public class Kits extends JavaPlugin {
 			config.set("Kits.Example.Items", "50-64,278-1,277-4");
 			config.set("Kits.Example2.Items", "64-64,1-1,5-4");
 			
-			config.set("Kits.Names", "Example,Example2");
+			config.set("Names", "Example,Example2");
 			
 			new File(getDataFolder(), "RESET.FILE").createNewFile();
 		}
@@ -56,7 +56,7 @@ public class Kits extends JavaPlugin {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(args.length == 0) {
-					String[] kits = getConfig().getString("Kits.Names").split(",");
+					String[] kits = getConfig().getString("Names").split(",");
 					for(String s : kits) {
 						if(s != null) {
 							player.sendMessage(ChatColor.BLUE + "[KitCreator] " + ChatColor.GREEN + "/kit " + s + " gives you the kit " + s);
@@ -88,8 +88,8 @@ public class Kits extends JavaPlugin {
 								if(sender.hasPermission("kits.create")) {
 									FileConfiguration config = getConfig();
 									config.set("Kits." + args[1] + ".Items", args[2]);
-									String kitNames = config.getString("Kits.Names");
-									config.set("Kits.Names", kitNames + "," + args[1]);
+									String kitNames = config.getString("Names");
+									config.set("Names", kitNames + "," + args[1]);
 									saveConfig();
 								} else {
 									sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
