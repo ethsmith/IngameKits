@@ -66,24 +66,32 @@ public class Kits extends JavaPlugin {
 					
 					for(String s : getConfig().getConfigurationSection("Kits").getKeys(false)) {
 						if(args[0].equalsIgnoreCase(s)) {
-							try {
-								String items = getConfig().getString("Kits." + s + ".Items");
-								String[] indiItems = items.split(",");
-								for(String s1 : indiItems) {
-									String[] itemAmounts = s1.split("-");
-									@SuppressWarnings("deprecation")
-									ItemStack item = new ItemStack(Integer.valueOf(itemAmounts[0]), Integer.valueOf(itemAmounts[1]));
-									player.getInventory().addItem(item);
+							if(sender.hasPermission("kits." + args[0])) {
+								try {
+									String items = getConfig().getString("Kits." + s + ".Items");
+									String[] indiItems = items.split(",");
+									for(String s1 : indiItems) {
+										String[] itemAmounts = s1.split("-");
+										@SuppressWarnings("deprecation")
+										ItemStack item = new ItemStack(Integer.valueOf(itemAmounts[0]), Integer.valueOf(itemAmounts[1]));
+										player.getInventory().addItem(item);
+									}
+									player.updateInventory();
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-								player.updateInventory();
-							} catch (Exception e) {
-								e.printStackTrace();
+							} else {
+								sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to use that kit!");
 							}
 						} else {
 							if(args[0].equalsIgnoreCase("create")) {
-								FileConfiguration config = getConfig();
-								config.set("Kits." + args[1] + ".Items", args[2]);
-								saveConfig();
+								if(sender.hasPermission("kits.create")) {
+									FileConfiguration config = getConfig();
+									config.set("Kits." + args[1] + ".Items", args[2]);
+									saveConfig();
+								} else {
+									sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
+								}
 							}
 						}
 					}
