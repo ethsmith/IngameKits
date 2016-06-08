@@ -39,7 +39,7 @@ public class Kits extends JavaPlugin {
 			new File(getDataFolder(), "RESET.FILE").createNewFile();
 			
 			config.set("Kits.Example.Items", "50-64,278-1,277-4");
-			config.set("Kits.Example.Items", "64-64,1-1,5-4");
+			config.set("Kits.Example2.Items", "64-64,1-1,5-4");
 			
 			config.set("Kits.Names", "Example,Example2");
 			
