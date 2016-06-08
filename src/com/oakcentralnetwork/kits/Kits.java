@@ -77,6 +77,7 @@ public class Kits extends JavaPlugin {
 										player.getInventory().addItem(item);
 									}
 									player.updateInventory();
+									player.sendMessage(ChatColor.BLUE + "[OakCentral Kits]" + ChatColor.GREEN + " You have been given the kit " + s + ".");
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -96,6 +97,8 @@ public class Kits extends JavaPlugin {
 							config.set("Names", kitNames + "," + kitName);
 							
 							saveConfig();
+							
+							sender.sendMessage(ChatColor.BLUE + "[KitCreator] " + ChatColor.GREEN + "You have made the kit " + kitName);
 						} else {
 							sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
 						}
