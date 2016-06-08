@@ -83,21 +83,21 @@ public class Kits extends JavaPlugin {
 							} else {
 								sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to use that kit!");
 							}
+						}
+					}
+					
+					if(args[0].equalsIgnoreCase("create")) {
+						if(sender.hasPermission("kits.create")) {
+							FileConfiguration config = getConfig();
+							String kitNames = config.getString("Names");
+							String kitName = args[1];
+							
+							config.set("Kits." + kitName + ".Items", args[2]);
+							config.set("Names", kitNames + "," + kitName);
+							
+							saveConfig();
 						} else {
-							if(args[0].equalsIgnoreCase("create")) {
-								if(sender.hasPermission("kits.create")) {
-									FileConfiguration config = getConfig();
-									String kitNames = config.getString("Names");
-									String kitName = args[1];
-									
-									config.set("Kits." + kitName + ".Items", args[2]);
-									config.set("Names", kitNames + "," + kitName);
-									
-									saveConfig();
-								} else {
-									sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
-								}
-							}
+							sender.sendMessage(ChatColor.RED + "[KitCreator] You do not have permission to create a kit!");
 						}
 					}
 				}
