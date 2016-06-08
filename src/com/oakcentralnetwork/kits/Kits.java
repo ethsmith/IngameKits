@@ -29,7 +29,10 @@ public class Kits extends JavaPlugin {
 	}
 	
 	/**
-	 * TODO: Make this better
+	 * Makes it where a reset of your config can be done
+	 * automatically by just deleting the RESET.FILE file.
+	 * I don't like having a RESET.FILE but I will keep it
+	 * for convenience.
 	 */
 	private void setupConfig(FileConfiguration config) throws IOException {
 		if(!new File(getDataFolder(), "RESET.FILE").exists()) {
@@ -75,6 +78,12 @@ public class Kits extends JavaPlugin {
 								player.updateInventory();
 							} catch (Exception e) {
 								e.printStackTrace();
+							}
+						} else {
+							if(args[0].equalsIgnoreCase("create")) {
+								FileConfiguration config = getConfig();
+								config.set("Kits." + args[1] + ".Items", args[2]);
+								saveConfig();
 							}
 						}
 					}
