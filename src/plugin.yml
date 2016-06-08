@@ -1,0 +1,10 @@
+name: KitCreator
+version: 1.0
+main: com.oakcentralnetwork.kits.Kits
+author: TekkitCommando
+description: Kit Creator Plugin.
+
+commands:
+    kit:
+        usage: /<command>
+        description: Returns kits or with extra args will give you a kit/create one.
